@@ -31,13 +31,29 @@ const App = () => {
     { name: 'Mussoorie', country: 'India' },
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
-    ]
+    ];
+
+    const [indianCities, setIndianCities] = useState([]);
+    
+    useEffect(() => {
+        const filtered = cityList.filter(
+            (city) => city.country === "India"
+        );
+        setIndianCities(filtered);
+    }, []);
+
     
   return (
     <div id="main">
-               {/* Do not remove the main div */}
-    </div>
-  )
+      <h2>Indian Cities</h2>
+      <ol>
+  {indianCities.map((city, index) => (
+      <li key={`location${index + 1}`}>
+{city.name}
+    </li>
+    ))}
+        </ol>
+        </div>
+        );
 }
-
-export default App
+export default App;
